@@ -1,6 +1,5 @@
 var Parser  = require('../');
 var assert  = require('assert');
-var validateSchema = require('signalk-schema').validate;
 
 function clearTimestampFromObj(obj) {
   var out = {};
@@ -42,7 +41,7 @@ function verifyParsing(sentence, expected) {
 
   it('Schema conformance', function() {
     var vesselData = parsedSentence.vessels["123456789"];
-    var result = validateSchema(vesselData);
+    var result = require('signalk-schema').validateVessel(vesselData);
     result.errors.forEach(function(error) {
       console.error("Schema validation error:",
                     "data path:", error.dataPath, ",",
